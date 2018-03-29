@@ -8,6 +8,24 @@
 
 ---
 
+## Dependencies
+
+* axios -> send requests to server to fetch or insert data.
+* babel-cli -> compile files from command line.
+
+### Nodejs
+
+* body-parser -> parse request bodies(get access to information inside request via req.body).
+* express -> web application framework for NodeJS.
+* mongoose -> ODM framework for MongoDB.
+* nodemon -> automatically restarts server whenever code changes.
+
+### React
+
+* react-bootstrap -> use bootstrap components with React.
+* react-modal lets -> create modal dialog in React.
+* react-router-dom -> use React router.
+
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
