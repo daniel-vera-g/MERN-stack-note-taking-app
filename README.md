@@ -26,6 +26,15 @@
 * react-modal lets -> create modal dialog in React.
 * react-router-dom -> use React router.
 
+## Folder Structure
+
+1. client -> client-side code
+* css
+* components
+2. 
+
+---
+
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
