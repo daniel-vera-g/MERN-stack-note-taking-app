@@ -4,8 +4,8 @@ const debug = require("debug")("APP:notes");
 
 let noteSchema = new Schema({
     topic: String,
-    desription: String,
-    month: String,
+    description: String,
+    month: Number,
     year: Number
 });
 
