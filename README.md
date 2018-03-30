@@ -29,11 +29,14 @@
 ## Folder Structure
 
 1. client -> client-side code
-* css
+* css -> Styles
 * components
+* index.hbs
+* index.js
 
 2. Server
-* 
+* server.js --> Server setup
+* routes/routes.js --> Basic route handling
 
 ---
 
