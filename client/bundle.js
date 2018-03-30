@@ -18307,7 +18307,7 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'h1',
         null,
-        'Test'
+        'Welcome to the note Taking App'
       );
     }
   }]);
