@@ -31,7 +31,9 @@
 1. client -> client-side code
 * css
 * components
-2. 
+
+2. Server
+* 
 
 ---
 
