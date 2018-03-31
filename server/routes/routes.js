@@ -17,28 +17,25 @@ router.get('/', (req, res) => {
 // insert a note
 router.post('/insert', (req, res) => {
     debug(req.body);
-    
+    debug(req.body.description);
     // create new note
     debug('Creating new note');
-    // save new note in DB
-    debug('Saving note in the DB');
-    Note.create(
-      {
-        topic: req.body.topic,
-        description: req.body.description,
-        month: req.body.month,
-        year: req.body.year
-      },
-      (err, note) => {
-        if (err) {
-          debug("There was an %s error adding the GFS to the DB", err);
-          res.status(404).send(err);
-        }
-        debug("Note successfully added to the DB");
-        res.status(202).send(note);
-      }
-    );
+    let note = new Note();
+        note.topic = req.body.topic;
+        note.description = req.body.description;
+        note.month = req.body.month;
+        note.year =  req.body.year;
 
+    // save new note in DB
+    debug('Saving note %s in the DB', note);
+    note.save((err) => {
+        if (err) {
+            debug('There was an error %s adding the note to the DB', err);
+            res.status(404).send(err);
+        };
+        debug('Note successfully added to the DB');
+        res.status(202).send('Note successfully added to the DB!');
+    })
 });
 
 // read/get all notes

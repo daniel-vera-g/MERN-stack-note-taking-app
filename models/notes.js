@@ -8,6 +8,7 @@ let NoteSchema = new Schema({
     month: Number,
     year: Number
 });
+
 mongoose.model('Note', NoteSchema);
 
 module.exports = mongoose.model('Note');
