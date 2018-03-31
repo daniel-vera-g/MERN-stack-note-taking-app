@@ -60,17 +60,30 @@ router.post("/update", (req, res) => {
   });
 });
 
-// read/get all notes
-router.get("/getAll", (req, res) => {
-  // TODO check if the the note/notes exist
-  // TODO get & send the notes to the client
-});
-
-
 // delete notes
 router.delete("/delete", (req, res) => {
   // TODO check if note exists
+
   // TODO delete note
+  let id = req.body._id;
+  Note.find({_id: id}).remove().exec((err, Note) => {
+      if (err) {
+          debug('Error removing note with the id %s', is);
+          res.status(404).send(err);
+      };
+      debug('Note with the id %s successfully removed', id);
+      res.status(202).send('Note successfully removed');
+  });
 });
+
+// read/get all notes
+router.get("/getAll", (req, res) => {
+  // TODO check if the the note/notes exist
+
+  // TODO get & send the notes to the client
+
+});
+
+
 
 module.exports = router;
