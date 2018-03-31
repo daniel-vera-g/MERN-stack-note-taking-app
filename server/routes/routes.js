@@ -1,3 +1,4 @@
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const router = express.Router();
@@ -64,7 +65,7 @@ router.post("/update", (req, res) => {
 router.delete("/delete", (req, res) => {
   // TODO check if note exists
 
-  // TODO delete note
+  //delete note
   let id = req.body._id;
   Note.find({_id: id}).remove().exec((err, Note) => {
       if (err) {
@@ -79,9 +80,42 @@ router.delete("/delete", (req, res) => {
 // read/get all notes
 router.get("/getAll", (req, res) => {
   // TODO check if the the note/notes exist
+  // TODO Improve search
+  // get & send the notes to the client
+  debug(req.query);
+  debug('Request to get Notes');
+  let reqYear = req.query.year;
+//   let reqMonth = req.query.month;
 
-  // TODO get & send the notes to the client
+  Note.find({year: reqYear}, (err, notes) => {
+          if (err) {
+              debug('Error %s querying notes', err);
+              res.status(404).send(err);
+          };
+          debug('Notes successfully queried');
+          res.status(202).json(notes)
+      });
 
+  //   if (reqMonth && reqMonth !== 'All') {
+//       Note.find({$and: [{month: reqMonth}, {year: reqYear}]}), (err,notes) => {
+//           if (err) {
+//               debug('Error getting the Notes from %s %s', reqMonth, reqYear);
+//               res.status(404).send(err);
+//           };
+//           debug('Notes successfully queried');
+//            res.status(202).json(notes);
+//       };
+//   }
+// else{
+//     Note.find({year: reqYear}, (err, notes) => {
+//           if (err) {
+//               debug('Error %s querying notes', err);
+//               res.status(404).send(err);
+//           };
+//           debug('Notes successfully queried');
+//           res.status(202).json(notes)
+//       });
+// }
 });
 
 
