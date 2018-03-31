@@ -16,41 +16,53 @@ router.get('/', (req, res) => {
 
 // insert a note
 router.post('/insert', (req, res) => {
-    debug('Creating new note');
+    debug(req.body);
+    
     // create new note
-    let note = new Note();
-    note.topic = req.body.topic;
-    note.description = req.body.description;
-    note.month = req.body.month;
-    note.year = req.body.year;
-
-    // save in DB
+    debug('Creating new note');
+    // save new note in DB
     debug('Saving note in the DB');
-    note.save((err) => {
+    Note.create(
+      {
+        topic: req.body.topic,
+        description: req.body.description,
+        month: req.body.month,
+        year: req.body.year
+      },
+      (err, note) => {
         if (err) {
-            debug("There was an %s error adding the GFS to the DB", err);
-            res.status(404);
-            res.send('There was an ' + err + 'error adding the GFS to the DB');
+          debug("There was an %s error adding the GFS to the DB", err);
+          res.status(404).send(err);
         }
         debug("Note successfully added to the DB");
-        res.status(202);
-        res.send('Note successfully added to the DB');
-    })
+        res.status(202).send(note);
+      }
+    );
+
 });
 
 // read/get all notes
 router.get('/getAll', (req, res) => {
+    // TODO check if the the note/notes exist
+
+
+    // TODO get & send the notes to the client
 
 });
 
 // update notes
 router.get('/update', (req, res) => {
+    // TODO check if note exists
+
+    // TODO Update note in the DB
 
 });
 
 // delete notes
 router.delete('/delete', (req, res) => {
+    // TODO check if note exists
 
+    // TODO delete note
 });
 
 module.exports = router;
