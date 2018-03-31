@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const dotenv = require('dotenv').config();
 const debug = require('debug')('APP:server')
 const app = express();
-
+const reload = require('reload');
 
 // morgan logging utility
 app.use(morgan("combined"));
@@ -23,5 +23,7 @@ mongoose.connect(process.env.DB_CONN);
 // router
 var router = require("./routes/routes.js");
 app.use('/', router);
+
+reload(app);
 
 module.exports = app;
