@@ -89,7 +89,7 @@ router.get("/getAll", (req, res) => {
   var reqYear = req.query.month;
   var reqMonth = req.query.year;
   // TODO unsertand & improve Query
-  if (reqMonth && reqMonth != "All") {
+  if (reqYear && reqMonth != "All") {
     Note.find({ $and: [{ month: reqMonth }, { year: reqYear }] }, function(
       err,
       notes
@@ -98,7 +98,7 @@ router.get("/getAll", (req, res) => {
       res.json(notes);
     });
   } else {
-    Expense.find({ year: reqYear }, function(err, notes) {
+    Note.find({ year: reqYear }, function(err, notes) {
       if (err) res.send(err);
       res.json(notes);
     });
