@@ -1,4 +1,3 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const router = express.Router();
@@ -67,57 +66,52 @@ router.delete("/delete", (req, res) => {
 
   //delete note
   let id = req.body._id;
-  Note.find({_id: id}).remove().exec((err, Note) => {
+  Note.find({ _id: id })
+    .remove()
+    .exec((err, Note) => {
       if (err) {
-          debug('Error removing note with the id %s', is);
-          res.status(404).send(err);
-      };
-      debug('Note with the id %s successfully removed', id);
-      res.status(202).send('Note successfully removed');
-  });
+        debug("Error removing note with the id %s", is);
+        res.status(404).send(err);
+      }
+      debug("Note with the id %s successfully removed", id);
+      res.status(202).send("Note successfully removed");
+    });
 });
 
 // read/get all notes
 router.get("/getAll", (req, res) => {
   // TODO check if the the note/notes exist
   // TODO Improve search
+
   // get & send the notes to the client
   debug(req.query);
-  debug('Request to get Notes');
-  let reqYear = req.query.year;
-//   let reqMonth = req.query.month;
-
-  Note.find({year: reqYear}, (err, notes) => {
-          if (err) {
-              debug('Error %s querying notes', err);
-              res.status(404).send(err);
-          };
-          debug('Notes successfully queried');
-          res.status(202).json(notes)
-      });
-
-  //   if (reqMonth && reqMonth !== 'All') {
-//       Note.find({$and: [{month: reqMonth}, {year: reqYear}]}), (err,notes) => {
-//           if (err) {
-//               debug('Error getting the Notes from %s %s', reqMonth, reqYear);
-//               res.status(404).send(err);
-//           };
-//           debug('Notes successfully queried');
-//            res.status(202).json(notes);
-//       };
-//   }
-// else{
-//     Note.find({year: reqYear}, (err, notes) => {
-//           if (err) {
-//               debug('Error %s querying notes', err);
-//               res.status(404).send(err);
-//           };
-//           debug('Notes successfully queried');
-//           res.status(202).json(notes)
-//       });
-// }
+  debug("Request to get Notes");
+  var reqYear = req.query.month;
+  var reqMonth = req.query.year;
+  // TODO unsertand & improve Query
+  if (reqMonth && reqMonth != "All") {
+    Note.find({ $and: [{ month: reqMonth }, { year: reqYear }] }, function(
+      err,
+      notes
+    ) {
+      if (err) res.send(err);
+      res.json(notes);
+    });
+  } else {
+    Expense.find({ year: reqYear }, function(err, notes) {
+      if (err) res.send(err);
+      res.json(notes);
+    });
+  }
+  
+  // Note.find({ year: reqYear }, (err, notes) => {
+  //   if (err) {
+  //     debug("Error %s querying notes", err);
+  //     res.status(404).send(err);
+  //   }
+  //   debug("Notes successfully queried");
+  //   res.status(202).json(notes);
+  // });
 });
-
-
 
 module.exports = router;
