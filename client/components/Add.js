@@ -41,15 +41,15 @@ class AddButton extends React.Component{
         });
     }
 
-    // funct. when modal closes
+    // function when modal closes
     closeModal() {
         this.setState({
             modalIsOpen: false,
             topic: '',
             description: '',
-            // TODO set month to be choosen
+            // TODO set month to be chosen
             month: '01',
-            // TODO set year to be choosen
+            // TODO set year to be chosen
             year: '2017',
             messageFromServer: ''
         });
