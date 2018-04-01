@@ -260,6 +260,7 @@ class Add extends React.Component {
             contentLabel="Add Expense"
             className="Modal"
           >
+          {/* Link to get Back to the App --> React Router */}
             <div className="button-center">
               <h3>{this.state.messageFromServer}</h3>
               <Link
