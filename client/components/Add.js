@@ -33,23 +33,68 @@ class AddButton extends React.Component{
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
-}
 
-// Use AXIOS post request to insert Note into the DB
-insertNewExpense(e) {
-    axios.post('/insert',
-    querystring.stringify({
-        topic: e.state.topic,
-        description: e.state.description,
-        month: e.state.month,
-        year: e.state.year
-    }), {
-        headers: {
-            "Content-Type": "applications/x-www-form-urlencoded"
-        }
-    }).then((response) => {
-        e.setState({
-            messageFromServer: response.data
+    // open modal to add Note
+    openModal() {
+        this.setState({
+            modalIsOpen: true 
         });
-    });
-};
+    }
+
+    // funct. when modal closes
+    closeModal() {
+        this.setState({
+            modalIsOpen: false,
+            topic: '',
+            description: '',
+            // TODO set month to be choosen
+            month: '01',
+            // TODO set year to be choosen
+            year: '2017',
+            messageFromServer: ''
+        });
+    }
+
+    // TODO
+    componentDidMount() {
+        
+    }
+
+    // TODO
+    handleSelectChange(e) {
+
+    }
+
+    // TODO
+    onClick(e) {
+
+    }
+    // Use AXIOS post request to insert Note into the DB
+    insertNewExpense(e) {
+        axios.post('/insert',
+        querystring.stringify({
+            topic: e.state.topic,
+            description: e.state.description,
+            month: e.state.month,
+            year: e.state.year
+        }), {
+            headers: {
+                "Content-Type": "applications/x-www-form-urlencoded"
+            }
+        }).then((response) => {
+            e.setState({
+                messageFromServer: response.data
+            });
+        });
+    };
+
+    // TODO
+    handleTextChange() {
+
+    }
+
+    // TODO
+    render() {
+
+    }
+}
