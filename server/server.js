@@ -1,3 +1,11 @@
+/**
+ * @author Daniel V.G.
+ * @email danielveragi@gmail.com
+ * @create date 2018-04-01 11:17:47
+ * @modify date 2018-04-01 11:17:47
+ * @desc Nodejs app configuration
+*/
+
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');

@@ -1,3 +1,11 @@
+/**
+ * @author Daniel V.G.
+ * @email danielveragi@gmail.com
+ * @create date 2018-04-01 11:17:21
+ * @modify date 2018-04-01 11:17:21
+ * @desc CRUD Routes for the Notes App
+*/
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const router = express.Router();
