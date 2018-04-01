@@ -7,6 +7,34 @@ import Axios from "axios";
  * @desc React Component to add a Note
 */
 
+/**
+ * Button to:
+ * Open Modal
+ * Input Note Informations
+ * Submit Informations(insertNewExpense())
+ */
+class AddButton extends React.Component{
+    constructor() {
+        super();
+        // set Modal Component state
+        this.state = {
+            topic: '',
+            description: '',
+            month: '',
+            year: '',
+            messageFromServer: '',
+            modalIsOpen: false
+        }
+        // set functions
+        this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.onClick = this.onClick.bind(this);
+        this.handleTextChange = this.handleTextChange.bind(this);
+        this.insertNewNote = this.insertNewNote.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+}
+
 // Use AXIOS post request to insert Note into the DB
 insertNewExpense(e) {
     axios.post('/insert',
