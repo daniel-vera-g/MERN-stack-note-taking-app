@@ -956,6 +956,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
 // import './index.css';
+/**
+ * @author Daniel V.G.
+ * @email danielveragi@gmail.com
+ * @create date 2018-04-01 11:15:52
+ * @modify date 2018-04-01 11:15:52
+ * @desc React Index File to generate App
+*/
 
 /***/ }),
 /* 15 */
@@ -18290,7 +18297,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @author Daniel V.G.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @email danielveragi@gmail.com
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @create date 2018-04-01 11:14:38
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @modify date 2018-04-01 11:14:38
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @desc Main react entry file for the Application 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -18357,7 +18370,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "/**\r\n * @author Daniel V.G.\r\n * @email danielveragi@gmail.com\r\n * @create date 2018-04-01 11:15:28\r\n * @modify date 2018-04-01 11:15:28\r\n * @desc Main CSS styles\r\n*/\r\n", ""]);
 
 // exports
 
