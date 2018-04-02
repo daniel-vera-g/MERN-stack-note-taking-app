@@ -4,7 +4,7 @@
  * @create date 2018-04-01 11:17:21
  * @modify date 2018-04-01 11:17:21
  * @desc CRUD Routes for the Notes App
-*/
+ */
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -86,7 +86,24 @@ router.delete("/delete", (req, res) => {
     });
 });
 
-// read/get all notes
+router.get("/getAll", function(req, res) {
+  var monthRec = req.query.month;
+  var yearRec = req.query.year;
+  if (monthRec && monthRec != "All") {
+    Note.find({ $and: [{ month: monthRec }, { year: yearRec }] }, function(
+      err,
+      expenses
+    ) {
+      if (err) res.send(err);
+      res.json(expenses);
+    });
+  } else {
+    Note.find({ year: yearRec }, function(err, expenses) {
+      if (err) res.send(err);
+      res.json(expenses);
+    });
+  }
+  /* // read/get all notes
 router.get("/getAll", (req, res) => {
   // TODO check if the the note/notes exist
   // TODO Improve search
@@ -110,8 +127,8 @@ router.get("/getAll", (req, res) => {
       if (err) res.send(err);
       res.json(notes);
     });
-  }
-  
+  } */
+
   // Note.find({ year: reqYear }, (err, notes) => {
   //   if (err) {
   //     debug("Error %s querying notes", err);

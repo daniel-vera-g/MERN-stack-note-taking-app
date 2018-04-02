@@ -1,4 +1,8 @@
-import Axios from "axios";
+import React from "react";
+import { Button } from "react-bootstrap";
+import Modal from "react-modal";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 /**
  * @author Daniel VG
@@ -55,7 +59,7 @@ class Add extends React.Component {
     });
   }
 
-  /* // TODO
+  // TODO
     componentDidMount() {
         if (this.props.selectedMonth == "All") {
           this.setState({ month: "Jan" });
@@ -63,7 +67,7 @@ class Add extends React.Component {
           this.setState({ month: this.props.selectedMonth });
         }
         this.setState({ year: this.props.selectedYear });
-    } */
+    }
 
   // On Click handler to add new Note
   onClick(e) {
@@ -99,7 +103,7 @@ class Add extends React.Component {
   }
 
   // Use AXIOS post request to insert Note into the DB
-  insertNewExpense(e) {
+  insertNewNote(e) {
     axios
       .post(
         "/insert",
@@ -134,7 +138,7 @@ class Add extends React.Component {
           <Modal
             isOpen={this.state.modalIsOpen}
             onRequestClose={this.closeModal}
-            contentLabel="Add Expense"
+            contentLabel="Add Note"
             className="Modal"
           >
             {/* Close Modal */}
@@ -142,7 +146,7 @@ class Add extends React.Component {
               to={{ pathname: "/", search: "" }}
               style={{ textDecoration: "none" }}
             >
-              <Button bsStyle="danger" bsSize="mini" onClick={this.closeModal}>
+              <Button bsStyle="danger" bsSize="small" onClick={this.closeModal}>
                 <span className="closebtn glyphicon glyphicon-remove" />
               </Button>
             </Link>
