@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import Modal from "react-modal";
 import axios from "axios";
 import { Link } from "react-router-dom";
+var querystring = require("querystring");
 
 /**
  * @author Daniel VG
@@ -60,14 +61,14 @@ class Add extends React.Component {
   }
 
   // TODO
-    componentDidMount() {
-        if (this.props.selectedMonth == "All") {
-          this.setState({ month: "Jan" });
-        } else {
-          this.setState({ month: this.props.selectedMonth });
-        }
-        this.setState({ year: this.props.selectedYear });
+  componentDidMount() {
+    if (this.props.selectedMonth == "All") {
+      this.setState({ month: "Jan" });
+    } else {
+      this.setState({ month: this.props.selectedMonth });
     }
+    this.setState({ year: this.props.selectedYear });
+  }
 
   // On Click handler to add new Note
   onClick(e) {
@@ -140,6 +141,7 @@ class Add extends React.Component {
             onRequestClose={this.closeModal}
             contentLabel="Add Note"
             className="Modal"
+            ariaHideApp={false}
           >
             {/* Close Modal */}
             <Link
@@ -153,8 +155,8 @@ class Add extends React.Component {
             <br />
             {/* field to input Note data */}
             <fieldset>
-                {/* Note Topic */}
-              <label for="Topic">Topic:</label>
+              {/* Note Topic */}
+              <label htmlFor="Topic">Topic:</label>
               <input
                 type="text"
                 id="topic"
@@ -163,7 +165,7 @@ class Add extends React.Component {
                 onChange={this.handleTextChange}
               />
               {/* Note Description */}
-              <label for="Description">Amount:</label>
+              <label htmlFor="Description">Amount:</label>
               <input
                 type="text"
                 id="description"
@@ -173,7 +175,7 @@ class Add extends React.Component {
               />
               {/* Select Month */}
               {/* TODO Set automatically */}
-              <label for="month">Month:</label>
+              <label htmlFor="month">Month:</label>
               <select
                 id="month"
                 name="month"
@@ -217,7 +219,7 @@ class Add extends React.Component {
                   December
                 </option>
               </select>
-              <label for="year">Year:</label>
+              <label htmlFor="year">Year:</label>
               <select
                 id="year"
                 name="year"
@@ -263,8 +265,9 @@ class Add extends React.Component {
             onRequestClose={this.closeModal}
             contentLabel="Add Expense"
             className="Modal"
+            ariaHideApp={false}
           >
-          {/* Link to get Back to the App --> React Router */}
+            {/* Link to get Back to the App --> React Router */}
             <div className="button-center">
               <h3>{this.state.messageFromServer}</h3>
               <Link
