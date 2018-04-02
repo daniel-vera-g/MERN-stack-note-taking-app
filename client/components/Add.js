@@ -16,9 +16,10 @@ var querystring = require("querystring");
  * Button to:
  * Open Modal
  * Input Note Informations
- * Submit Informations(insertNewExpense())
+ * Submit Informations(insertNewNote())
  */
 class Add extends React.Component {
+  
   constructor() {
     super();
     // set Modal Component state
@@ -30,7 +31,7 @@ class Add extends React.Component {
       messageFromServer: "",
       modalIsOpen: false
     };
-    // set functions
+
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.onClick = this.onClick.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -52,15 +53,12 @@ class Add extends React.Component {
       modalIsOpen: false,
       topic: "",
       description: "",
-      // TODO set month to be chosen
-      month: "01",
-      // TODO set year to be chosen
-      year: "2017",
+      month: "Jan",
+      year: 2017,
       messageFromServer: ""
     });
   }
 
-  // TODO
   componentDidMount() {
     if (this.props.selectedMonth == "All") {
       this.setState({ month: "Jan" });
@@ -72,7 +70,7 @@ class Add extends React.Component {
 
   // On Click handler to add new Note
   onClick(e) {
-    this.insertNewExpense(e);
+    this.insertNewNote(e);
   }
 
   // handle select input for month and year
@@ -99,7 +97,9 @@ class Add extends React.Component {
       });
     }
     if (e.target.name == "description") {
-      description: e.target.value;
+      this.setState({
+        description: e.target.value
+      })
     }
   }
 
@@ -165,7 +165,7 @@ class Add extends React.Component {
                 onChange={this.handleTextChange}
               />
               {/* Note Description */}
-              <label htmlFor="Description">Amount:</label>
+              <label htmlFor="Description">Description:</label>
               <input
                 type="text"
                 id="description"
@@ -174,7 +174,6 @@ class Add extends React.Component {
                 onChange={this.handleTextChange}
               />
               {/* Select Month */}
-              {/* TODO Set automatically */}
               <label htmlFor="month">Month:</label>
               <select
                 id="month"
@@ -263,7 +262,7 @@ class Add extends React.Component {
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
             onRequestClose={this.closeModal}
-            contentLabel="Add Expense"
+            contentLabel="Add note"
             className="Modal"
             ariaHideApp={false}
           >

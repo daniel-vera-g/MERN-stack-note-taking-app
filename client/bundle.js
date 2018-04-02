@@ -33246,7 +33246,7 @@ var querystring = __webpack_require__(380);
  * Button to:
  * Open Modal
  * Input Note Informations
- * Submit Informations(insertNewExpense())
+ * Submit Informations(insertNewNote())
  */
 
 var Add = function (_React$Component) {
@@ -33266,7 +33266,7 @@ var Add = function (_React$Component) {
       messageFromServer: "",
       modalIsOpen: false
     };
-    // set functions
+
     _this.handleSelectChange = _this.handleSelectChange.bind(_this);
     _this.onClick = _this.onClick.bind(_this);
     _this.handleTextChange = _this.handleTextChange.bind(_this);
@@ -33296,16 +33296,11 @@ var Add = function (_React$Component) {
         modalIsOpen: false,
         topic: "",
         description: "",
-        // TODO set month to be chosen
-        month: "01",
-        // TODO set year to be chosen
-        year: "2017",
+        month: "Jan",
+        year: 2017,
         messageFromServer: ""
       });
     }
-
-    // TODO
-
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -33322,7 +33317,7 @@ var Add = function (_React$Component) {
   }, {
     key: "onClick",
     value: function onClick(e) {
-      this.insertNewExpense(e);
+      this.insertNewNote(e);
     }
 
     // handle select input for month and year
@@ -33355,7 +33350,9 @@ var Add = function (_React$Component) {
         });
       }
       if (e.target.name == "description") {
-        description: e.target.value;
+        this.setState({
+          description: e.target.value
+        });
       }
     }
 
@@ -33431,7 +33428,7 @@ var Add = function (_React$Component) {
               _react2.default.createElement(
                 "label",
                 { htmlFor: "Description" },
-                "Amount:"
+                "Description:"
               ),
               _react2.default.createElement("input", {
                 type: "text",
@@ -33581,7 +33578,7 @@ var Add = function (_React$Component) {
               isOpen: this.state.modalIsOpen,
               onAfterOpen: this.afterOpenModal,
               onRequestClose: this.closeModal,
-              contentLabel: "Add Expense",
+              contentLabel: "Add note",
               className: "Modal",
               ariaHideApp: false
             },
