@@ -10,7 +10,6 @@ import React from 'react';
 import { Route, Switch } from "react-router-dom";
 import App from "./components/app";
 
-// TODO check for understanding
 // Route with the Path '/' that renders 'App' component
 export const Routes = () => {
     <Switch>
@@ -18,4 +17,4 @@ export const Routes = () => {
     </Switch>
 }
 
-export default Routes;
+export default Routes;  
