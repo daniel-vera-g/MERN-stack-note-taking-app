@@ -25,10 +25,11 @@ router.get("/", (req, res) => {
 // insert a note
 router.post("/insert", (req, res) => {
 
-  debug("An insert request was made with: " + req.body);
+  debug(req.body);
+  debug("An insert request was made");
   // create new note
   debug("Creating new note");
-  const note = new Note();
+  let note = new Note();
   note.topic = req.body.topic;
   note.description = req.body.description;
   note.month = req.body.month;

@@ -19,7 +19,6 @@ var querystring = require("querystring");
  * Submit Informations(insertNewNote())
  */
 class Add extends React.Component {
-  
   constructor() {
     super();
     // set Modal Component state
@@ -70,7 +69,7 @@ class Add extends React.Component {
 
   // On Click handler to add new Note
   onClick(e) {
-    this.insertNewNote(e);
+    this.insertNewNote(this);
   }
 
   // handle select input for month and year
@@ -99,32 +98,48 @@ class Add extends React.Component {
     if (e.target.name == "description") {
       this.setState({
         description: e.target.value
-      })
+      });
     }
   }
 
   // Use AXIOS post request to insert Note into the DB
   insertNewNote(e) {
     axios
-      .post(
-        "/insert",
-        querystring.stringify({
-          topic: e.state.topic,
-          description: e.state.description,
-          month: e.state.month,
-          year: e.state.year
-        }),
-        {
-          headers: {
-            "Content-Type": "applications/x-www-form-urlencoded"
-          }
-        }
-      )
-      .then(response => {
+      .post("/insert", {
+        topic: e.state.topic,
+        description: e.state.description,
+        month: e.state.month,
+        year: e.state.year
+      })
+      .then(resp => {
+        console.log(resp);
         e.setState({
-          messageFromServer: response.data
+          messageFromServer: resp.data
         });
+      })
+      .catch(err => {
+        console.log(err);
       });
+    // axios
+    //   .post(
+    //     "/insert",
+    //     querystring.stringify({
+    //       topic: e.state.topic,
+    //       description: e.state.description,
+    //       month: e.state.month,
+    //       year: e.state.year
+    //     }),
+    //     {
+    //       headers: {
+    //         "Content-Type": "applications/x-www-form-urlencoded"
+    //       }
+    //     }
+    //   )
+    //   .then(response => {
+    //     e.setState({
+    //       messageFromServer: response.data
+    //     });
+    //   });
   }
 
   render() {
@@ -147,6 +162,7 @@ class Add extends React.Component {
             <Link
               to={{ pathname: "/", search: "" }}
               style={{ textDecoration: "none" }}
+              replace
             >
               <Button bsStyle="danger" bsSize="small" onClick={this.closeModal}>
                 <span className="closebtn glyphicon glyphicon-remove" />
@@ -272,10 +288,11 @@ class Add extends React.Component {
               <Link
                 to={{ pathname: "/", search: "" }}
                 style={{ textDecoration: "none" }}
+                replace
               >
                 <Button
                   bsStyle="success"
-                  bsSize="mini"
+                  bsSize="small"
                   onClick={this.closeModal}
                 >
                   Close the Dialog

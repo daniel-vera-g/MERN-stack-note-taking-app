@@ -33317,7 +33317,7 @@ var Add = function (_React$Component) {
   }, {
     key: "onClick",
     value: function onClick(e) {
-      this.insertNewNote(e);
+      this.insertNewNote(this);
     }
 
     // handle select input for month and year
@@ -33361,20 +33361,39 @@ var Add = function (_React$Component) {
   }, {
     key: "insertNewNote",
     value: function insertNewNote(e) {
-      _axios2.default.post("/insert", querystring.stringify({
+      _axios2.default.post("/insert", {
         topic: e.state.topic,
         description: e.state.description,
         month: e.state.month,
         year: e.state.year
-      }), {
-        headers: {
-          "Content-Type": "applications/x-www-form-urlencoded"
-        }
-      }).then(function (response) {
+      }).then(function (resp) {
+        console.log(resp);
         e.setState({
-          messageFromServer: response.data
+          messageFromServer: resp.data
         });
+      }).catch(function (err) {
+        console.log(err);
       });
+      // axios
+      //   .post(
+      //     "/insert",
+      //     querystring.stringify({
+      //       topic: e.state.topic,
+      //       description: e.state.description,
+      //       month: e.state.month,
+      //       year: e.state.year
+      //     }),
+      //     {
+      //       headers: {
+      //         "Content-Type": "applications/x-www-form-urlencoded"
+      //       }
+      //     }
+      //   )
+      //   .then(response => {
+      //     e.setState({
+      //       messageFromServer: response.data
+      //     });
+      //   });
     }
   }, {
     key: "render",
@@ -33401,7 +33420,8 @@ var Add = function (_React$Component) {
               _reactRouterDom.Link,
               {
                 to: { pathname: "/", search: "" },
-                style: { textDecoration: "none" }
+                style: { textDecoration: "none" },
+                replace: true
               },
               _react2.default.createElement(
                 _reactBootstrap.Button,
@@ -33594,13 +33614,14 @@ var Add = function (_React$Component) {
                 _reactRouterDom.Link,
                 {
                   to: { pathname: "/", search: "" },
-                  style: { textDecoration: "none" }
+                  style: { textDecoration: "none" },
+                  replace: true
                 },
                 _react2.default.createElement(
                   _reactBootstrap.Button,
                   {
                     bsStyle: "success",
-                    bsSize: "mini",
+                    bsSize: "small",
                     onClick: this.closeModal
                   },
                   "Close the Dialog"
