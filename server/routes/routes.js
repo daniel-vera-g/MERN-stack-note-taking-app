@@ -24,8 +24,8 @@ router.get("/", (req, res) => {
 
 // insert a note
 router.post("/insert", (req, res) => {
-  debug(req.body);
-  debug(req.body.description);
+
+  debug("An insert request was made with: " + req.body);
   // create new note
   debug("Creating new note");
   const note = new Note();
@@ -33,9 +33,10 @@ router.post("/insert", (req, res) => {
   note.description = req.body.description;
   note.month = req.body.month;
   note.year = req.body.year;
+  debug("new Note created: " + note);
 
   // save new note in DB
-  debug("Saving note %s in the DB", note);
+  debug("Saving note note in the DB");
   note.save(err => {
     if (err) {
       debug("There was an error %s adding the note to the DB", err);
@@ -51,13 +52,15 @@ router.post("/update", (req, res) => {
   // TODO check if note exists
 
   // Update note in the DB
-  debug(req.body);
+  debug("A note upadate was made: " + req.body);
   let updatedNote = {
     topic: req.body.topic,
     description: req.body.description,
     month: req.body.month,
     year: req.body.year
   };
+  debug("The updated note is: " + updatedNote);
+  debug("The note will be upadated");
   Note.update({ _id: req.body._id }, updatedNote, (err, result) => {
     if (err) {
       debug("Error %s updating a note", err);
@@ -74,6 +77,7 @@ router.delete("/delete", (req, res) => {
 
   //delete note
   let id = req.body._id;
+  debug("Note with the id %s will be deleted", id);
   Note.find({ _id: id })
     .remove()
     .exec((err, Note) => {
@@ -84,59 +88,41 @@ router.delete("/delete", (req, res) => {
       debug("Note with the id %s successfully removed", id);
       res.status(202).send("Note successfully removed");
     });
-});
-
-router.get("/getAll", function(req, res) {
+  });
+  
+  // Get All Notes
+  router.get("/getAll", function(req, res) {
+    // TODO check if the the note/notes exist
+    // TODO Improve search
+    
   var monthRec = req.query.month;
   var yearRec = req.query.year;
+  debug("Getting notes with the month %s and year %s", monthRec, yearRec);
+  // search notes for the requested month & year
   if (monthRec && monthRec != "All") {
     Note.find({ $and: [{ month: monthRec }, { year: yearRec }] }, function(
       err,
-      expenses
-    ) {
-      if (err) res.send(err);
-      res.json(expenses);
-    });
-  } else {
-    Note.find({ year: yearRec }, function(err, expenses) {
-      if (err) res.send(err);
-      res.json(expenses);
-    });
-  }
-  /* // read/get all notes
-router.get("/getAll", (req, res) => {
-  // TODO check if the the note/notes exist
-  // TODO Improve search
-
-  // get & send the notes to the client
-  debug(req.query);
-  debug("Request to get Notes");
-  var reqYear = req.query.month;
-  var reqMonth = req.query.year;
-  // TODO unsertand & improve Query
-  if (reqYear && reqMonth != "All") {
-    Note.find({ $and: [{ month: reqMonth }, { year: reqYear }] }, function(
-      err,
       notes
     ) {
-      if (err) res.send(err);
+      if (err) {
+        debug("Error getting the notes");
+        res.send(err);
+      };
+      debug("Notes successfully requested" + notes);
       res.json(notes);
     });
   } else {
-    Note.find({ year: reqYear }, function(err, notes) {
-      if (err) res.send(err);
+    debug("Finding notes for the year %s", yearRec);
+    // search the notes for the requested year
+    Note.find({ year: yearRec }, function(err, notes) {
+      if (err) {
+        debug("Error requesting notes with the year %s", yearRec);
+        res.send(err);
+      }
+      debug("Successfully requested notes with the year %s", yearRec);
       res.json(notes);
     });
-  } */
-
-  // Note.find({ year: reqYear }, (err, notes) => {
-  //   if (err) {
-  //     debug("Error %s querying notes", err);
-  //     res.status(404).send(err);
-  //   }
-  //   debug("Notes successfully queried");
-  //   res.status(202).json(notes);
-  // });
+  }
 });
 
 module.exports = router;
