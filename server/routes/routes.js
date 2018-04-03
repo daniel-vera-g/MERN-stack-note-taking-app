@@ -120,6 +120,7 @@ router.delete("/delete", (req, res) => {
         res.send(err);
       }
       debug("Successfully requested notes with the year %s", yearRec);
+      debug(notes);
       res.json(notes);
     });
   }
