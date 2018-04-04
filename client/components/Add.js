@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import Modal from "react-modal";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Log from "react-log";
 var querystring = require("querystring");
 
 /**
@@ -11,7 +12,9 @@ var querystring = require("querystring");
  * @modify date 2018-04-01 11:08:14
  * @desc React Component to add a Note
  */
-
+<Log>
+  Testing logging
+</Log>
 /**
  * Button to:
  * Open Modal
@@ -120,26 +123,6 @@ class Add extends React.Component {
       .catch(err => {
         console.log(err);
       });
-    // axios
-    //   .post(
-    //     "/insert",
-    //     querystring.stringify({
-    //       topic: e.state.topic,
-    //       description: e.state.description,
-    //       month: e.state.month,
-    //       year: e.state.year
-    //     }),
-    //     {
-    //       headers: {
-    //         "Content-Type": "applications/x-www-form-urlencoded"
-    //       }
-    //     }
-    //   )
-    //   .then(response => {
-    //     e.setState({
-    //       messageFromServer: response.data
-    //     });
-    //   });
   }
 
   render() {
