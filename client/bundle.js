@@ -32544,7 +32544,7 @@ var App = function (_React$Component) {
             this.state.data.map(function (note) {
               return _react2.default.createElement(
                 "tr",
-                null,
+                { key: note._id },
                 _react2.default.createElement("td", { className: "counterCell" }),
                 _react2.default.createElement(
                   "td",
@@ -49110,7 +49110,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @create date 2018-04-05 08:40:24
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @modify date 2018-04-05 08:40:24
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @desc Component to update the UI of the Screen
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 var querystring = __webpack_require__(168);
 
@@ -49206,28 +49206,6 @@ var Update = function (_React$Component) {
   }, {
     key: "update",
     value: function update(e) {
-      //     axios
-      //       .post(
-      //         "/update",
-      //         querystring.stringify({
-      //           _id: e.state.id,
-      //           description: e.state.description,
-      //           amount: e.state.amount,
-      //           month: e.state.month,
-      //           year: e.state.year
-      //         }),
-      //         {
-      //           headers: {
-      //             "Content-Type": "application/x-www-form-urlencoded"
-      //           }
-      //         }
-      //       )
-      //       .then(function(response) {
-      //         e.setState({
-      //           messageFromServer: response.data
-      //         });
-      //       });
-
       _axios2.default.post("/update", {
         _id: e.state.id,
         description: e.state.description,
@@ -49255,10 +49233,18 @@ var Update = function (_React$Component) {
           ),
           _react2.default.createElement(
             _reactModal2.default,
-            { isOpen: this.state.modalIsOpen, onRequestClose: this.closeModal, contentLabel: "Add Expense", className: "Modal" },
+            {
+              isOpen: this.state.modalIsOpen,
+              onRequestClose: this.closeModal,
+              contentLabel: "Add Expense",
+              className: "Modal"
+            },
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: { pathname: "/", search: "" }, style: { textDecoration: "none" } },
+              {
+                to: { pathname: "/", search: "" },
+                style: { textDecoration: "none" }
+              },
               _react2.default.createElement(
                 _reactBootstrap.Button,
                 { bsStyle: "danger", bsSize: "lg", onClick: this.closeModal },
@@ -49274,13 +49260,25 @@ var Update = function (_React$Component) {
                 { htmlFor: "topic" },
                 "topic:"
               ),
-              _react2.default.createElement("input", { type: "text", id: "topic", name: "topic", value: this.state.topic, onChange: this.handleTextChange }),
+              _react2.default.createElement("input", {
+                type: "text",
+                id: "topic",
+                name: "topic",
+                value: this.state.topic,
+                onChange: this.handleTextChange
+              }),
               _react2.default.createElement(
                 "label",
                 { htmlFor: "description" },
                 "Description:"
               ),
-              _react2.default.createElement("input", { type: "text", id: "description", name: "description", value: this.state.description, onChange: this.handleTextChange }),
+              _react2.default.createElement("input", {
+                type: "text",
+                id: "description",
+                name: "description",
+                value: this.state.description,
+                onChange: this.handleTextChange
+              }),
               _react2.default.createElement(
                 "label",
                 { htmlFor: "month" },
@@ -49288,7 +49286,12 @@ var Update = function (_React$Component) {
               ),
               _react2.default.createElement(
                 "select",
-                { id: "month", name: "month", value: this.state.month, onChange: this.handleSelectChange },
+                {
+                  id: "month",
+                  name: "month",
+                  value: this.state.month,
+                  onChange: this.handleSelectChange
+                },
                 _react2.default.createElement(
                   "option",
                   { value: "Jan", id: "Jan" },
@@ -49357,7 +49360,12 @@ var Update = function (_React$Component) {
               ),
               _react2.default.createElement(
                 "select",
-                { id: "year", name: "year", value: this.state.year, onChange: this.handleSelectChange },
+                {
+                  id: "year",
+                  name: "year",
+                  value: this.state.year,
+                  onChange: this.handleSelectChange
+                },
                 _react2.default.createElement(
                   "option",
                   { value: "2015", id: "17" },
@@ -49436,11 +49444,7 @@ var Update = function (_React$Component) {
                 },
                 _react2.default.createElement(
                   _reactBootstrap.Button,
-                  {
-                    bsStyle: "success",
-                    bsSize: "lg",
-                    onClick: this.closeModal
-                  },
+                  { bsStyle: "success", bsSize: "lg", onClick: this.closeModal },
                   "Close the Dialog"
                 )
               )

@@ -58,16 +58,24 @@ export default class App extends React.Component {
           </thead>
           <tbody>
             {this.state.data.map((note) => {
-              return (
-                <tr>
+              return <tr key={note._id}>
                   <td className="counterCell" />
-                  <td className="desc-col">{note.topic}</td>
-                  <td className="button-col">{note.description}</td>
-                  <td className="button-col">{note.month}</td>
-                   <td className="button-col">{note.year}</td>
-                   <td className="button-col"><Update note={note}/></td>
-                </tr>
-              );
+                  <td className="desc-col">
+                    {note.topic}
+                  </td>
+                  <td className="button-col">
+                    {note.description}
+                  </td>
+                  <td className="button-col">
+                    {note.month}
+                  </td>
+                  <td className="button-col">
+                    {note.year}
+                  </td>
+                  <td className="button-col">
+                    <Update note={note} />
+                  </td>
+                </tr>;
             })}
           </tbody>
         </table>
