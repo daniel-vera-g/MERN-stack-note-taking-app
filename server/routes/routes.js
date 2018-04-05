@@ -53,15 +53,17 @@ router.post("/update", (req, res) => {
   // TODO check if note exists
 
   // Update note in the DB
-  debug("A note upadate was made: " + req.body);
+  debug(req.body);
+  debug("A note update was made: ");
   let updatedNote = {
     topic: req.body.topic,
     description: req.body.description,
     month: req.body.month,
     year: req.body.year
   };
+  debug(updatedNote);
   debug("The updated note is: " + updatedNote);
-  debug("The note will be upadated");
+  debug("The note will be updated");
   Note.update({ _id: req.body._id }, updatedNote, (err, result) => {
     if (err) {
       debug("Error %s updating a note", err);

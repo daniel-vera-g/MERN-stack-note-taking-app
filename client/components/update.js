@@ -70,14 +70,14 @@ class Update extends React.Component {
   }
 
   handleTextChange(e) {
-    if (e.target.name == "description") {
-      this.setState({
-        description: e.target.value
-      });
-    }
     if (e.target.name == "topic") {
       this.setState({
         topic: e.target.value
+      });
+    }
+    if (e.target.name == "description") {
+      this.setState({
+        description: e.target.value
       });
     }
   }
@@ -91,8 +91,8 @@ class Update extends React.Component {
     axios
       .post("/update", {
         _id: e.state.id,
+        topic: e.state.topic,
         description: e.state.description,
-        amount: e.state.amount,
         month: e.state.month,
         year: e.state.year
       })
@@ -116,6 +116,7 @@ class Update extends React.Component {
             onRequestClose={this.closeModal}
             contentLabel="Add Expense"
             className="Modal"
+            ariaHideApp={false}
           >
             <Link
               to={{ pathname: "/", search: "" }}
@@ -127,7 +128,7 @@ class Update extends React.Component {
             </Link>
             <br />
             <fieldset>
-              <label htmlFor="topic">topic:</label>
+              <label htmlFor="topic">Topic:</label>
               <input
                 type="text"
                 id="topic"
@@ -224,32 +225,21 @@ class Update extends React.Component {
         </div>
       );
     } else {
-      return (
-        <div>
+      return <div>
           <Button bsStyle="warning" bsSize="small" onClick={this.openModal}>
             <span className="glyphicon glyphicon-edit" />
           </Button>
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            contentLabel="Add Expense"
-            className="Modal"
-          >
+          <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal} onRequestClose={this.closeModal} contentLabel="Add Note" className="Modal" ariaHideApp={false}>
             <div className="button-center">
               <h3>{this.state.messageFromServer}</h3>
-              <Link
-                to={{ pathname: "/", search: "" }}
-                style={{ textDecoration: "none" }}
-              >
+              <Link to={{ pathname: "/", search: "" }} style={{ textDecoration: "none" }}>
                 <Button bsStyle="success" bsSize="lg" onClick={this.closeModal}>
                   Close the Dialog
                 </Button>
               </Link>
             </div>
           </Modal>
-        </div>
-      );
+        </div>;
     }
   }
 }
