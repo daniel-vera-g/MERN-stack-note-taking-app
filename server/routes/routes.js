@@ -17,7 +17,7 @@ const Note = require("../../models/notes");
 // Basic route Handler
 router.get("/", (req, res) => {
   debug("Rendering index.js");
-  res.render("index");
+  res.status(200).render("index");
 });
 
 /* CRUD Operations */
@@ -44,7 +44,7 @@ router.post("/insert", (req, res) => {
       res.status(404).send(err);
     }
     debug("Note successfully added to the DB");
-    res.status(202).send("Note successfully added to the DB!");
+    res.status(200).send("Note successfully added to the DB!");
   });
 });
 
@@ -68,7 +68,7 @@ router.post("/update", (req, res) => {
       res.status(404).send(err);
     }
     debug("Note successfully updated");
-    res.status(202).send("Note successfully updated");
+    res.status(200).send("Note successfully updated");
   });
 });
 
@@ -87,7 +87,7 @@ router.delete("/delete", (req, res) => {
         res.status(404).send(err);
       }
       debug("Note with the id %s successfully removed", id);
-      res.status(202).send("Note successfully removed");
+      res.status(200).send("Note successfully removed");
     });
   });
   
