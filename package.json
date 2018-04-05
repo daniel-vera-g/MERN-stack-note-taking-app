@@ -23,7 +23,7 @@
     "reload": "^2.2.2"
   },
   "scripts": {
-    "webpack": "webpack --watch",
+    "webpack": "webpack",
     "start": "set DEBUG=APP:* && npm run webpack && nodemon --exec babel-node -- bin/www"
   },
   "devDependencies": {

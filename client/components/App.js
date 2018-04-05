@@ -10,6 +10,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import Add from "./Add";
+import Update from "./update";
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -62,7 +64,8 @@ export default class App extends React.Component {
                   <td className="desc-col">{note.topic}</td>
                   <td className="button-col">{note.description}</td>
                   <td className="button-col">{note.month}</td>
-                  <td className="button-col">{note.year}</td>
+                   <td className="button-col">{note.year}</td>
+                   <td className="button-col"><Update note={note}/></td>
                 </tr>
               );
             })}

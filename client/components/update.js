@@ -4,7 +4,7 @@
  * @create date 2018-04-05 08:40:24
  * @modify date 2018-04-05 08:40:24
  * @desc Component to update the UI of the Screen
-*/
+ */
 
 import React from "react";
 import Modal from "react-modal";
@@ -17,13 +17,14 @@ class Update extends React.Component {
     super();
     this.state = {
       id: "",
+      topic: "",
       description: "",
-      amount: "",
       month: "",
       year: "",
       messageFromServer: "",
       modalIsOpen: false
     };
+
     this.update = this.update.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -31,26 +32,30 @@ class Update extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
+
   componentDidMount() {
     this.setState({
-      id: this.props.expense._id,
-      description: this.props.expense.description,
-      amount: this.props.expense.amount,
-      month: this.props.expense.month,
-      year: this.props.expense.year
+      id: this.props.note._id,
+      topic: this.props.note.topic,
+      description: this.props.note.description,
+      month: this.props.note.month,
+      year: this.props.note.year
     });
   }
+
   openModal() {
     this.setState({
       modalIsOpen: true
     });
   }
+
   closeModal() {
     this.setState({
       modalIsOpen: false,
       messageFromServer: ""
     });
   }
+
   handleSelectChange(e) {
     if (e.target.name == "month") {
       this.setState({
@@ -63,44 +68,42 @@ class Update extends React.Component {
       });
     }
   }
+
   handleTextChange(e) {
     if (e.target.name == "description") {
       this.setState({
         description: e.target.value
       });
     }
-    if (e.target.name == "amount") {
+    if (e.target.name == "topic") {
       this.setState({
-        amount: e.target.value
+        topic: e.target.value
       });
     }
   }
+
   onClick(e) {
     this.update(this);
   }
+
+  //   update request to the server
   update(e) {
     axios
-      .post(
-        "/update",
-        querystring.stringify({
-          _id: e.state.id,
-          description: e.state.description,
-          amount: e.state.amount,
-          month: e.state.month,
-          year: e.state.year
-        }),
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        }
-      )
-      .then(function(response) {
+      .post("/update", {
+        _id: e.state.id,
+        description: e.state.description,
+        amount: e.state.amount,
+        month: e.state.month,
+        year: e.state.year
+      })
+      .then(resp => {
+        console.log(resp);
         e.setState({
-          messageFromServer: response.data
+          messageFromServer: resp.data
         });
       });
   }
+
   render() {
     if (this.state.messageFromServer == "") {
       return (
@@ -118,13 +121,21 @@ class Update extends React.Component {
               to={{ pathname: "/", search: "" }}
               style={{ textDecoration: "none" }}
             >
-              <Button bsStyle="danger" bsSize="mini" onClick={this.closeModal}>
+              <Button bsStyle="danger" bsSize="lg" onClick={this.closeModal}>
                 <span className="closebtn glyphicon glyphicon-remove" />
               </Button>
             </Link>
             <br />
             <fieldset>
-              <label for="description">Description:</label>
+              <label htmlFor="topic">topic:</label>
+              <input
+                type="text"
+                id="topic"
+                name="topic"
+                value={this.state.topic}
+                onChange={this.handleTextChange}
+              />
+              <label htmlFor="description">Description:</label>
               <input
                 type="text"
                 id="description"
@@ -132,15 +143,7 @@ class Update extends React.Component {
                 value={this.state.description}
                 onChange={this.handleTextChange}
               />
-              <label for="amount">Amount:</label>
-              <input
-                type="number"
-                id="amount"
-                name="amount"
-                value={this.state.amount}
-                onChange={this.handleTextChange}
-              />
-              <label for="month">Month:</label>
+              <label htmlFor="month">Month:</label>
               <select
                 id="month"
                 name="month"
@@ -151,7 +154,7 @@ class Update extends React.Component {
                   January
                 </option>
                 <option value="Feb" id="Feb">
-                  Febrary
+                  February
                 </option>
                 <option value="Mar" id="Mar">
                   March
@@ -184,7 +187,7 @@ class Update extends React.Component {
                   December
                 </option>
               </select>
-              <label for="year">Year:</label>
+              <label htmlFor="year">Year:</label>
               <select
                 id="year"
                 name="year"
@@ -239,11 +242,7 @@ class Update extends React.Component {
                 to={{ pathname: "/", search: "" }}
                 style={{ textDecoration: "none" }}
               >
-                <Button
-                  bsStyle="success"
-                  bsSize="mini"
-                  onClick={this.closeModal}
-                >
+                <Button bsStyle="success" bsSize="lg" onClick={this.closeModal}>
                   Close the Dialog
                 </Button>
               </Link>
