@@ -100,6 +100,8 @@ class Update extends React.Component {
         console.log(resp);
         e.setState({
           messageFromServer: resp.data
+        }).catch(err => {
+         console.error(err);
         });
       });
   }

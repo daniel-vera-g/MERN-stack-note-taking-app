@@ -34,6 +34,8 @@ export default class App extends React.Component {
       ev.setState({ data: response.data });
       ev.setState({
         selectedYear: parseInt(year)
+      }).catch(err => {
+        console.error(err);
       });
     });
   }
