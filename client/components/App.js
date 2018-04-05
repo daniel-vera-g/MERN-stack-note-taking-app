@@ -11,7 +11,7 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import Add from "./Add";
 import Update from "./update";
-
+import Delete from "./delete";
 export default class App extends React.Component {
   constructor() {
     super();
@@ -39,12 +39,8 @@ export default class App extends React.Component {
   }
   
   render() {
-    return (
-      <div>
-        <Add
-          selectedMonth={this.state.selectedMonth}
-          selectedYear={this.state.selectedYear}
-        />
+    return <div>
+        <Add selectedMonth={this.state.selectedMonth} selectedYear={this.state.selectedYear} />
         <table>
           <thead>
             <tr>
@@ -53,32 +49,28 @@ export default class App extends React.Component {
               <th className="button-col">Description</th>
               <th className="button-col">Month</th>
               <th className="button-col">Year</th>
+              <th className="button-col">Update</th>
+              <th className="button-col">Delete</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.data.map((note) => {
+            {this.state.data.map(note => {
               return <tr key={note._id}>
                   <td className="counterCell" />
-                  <td className="desc-col">
-                    {note.topic}
-                  </td>
-                  <td className="button-col">
-                    {note.description}
-                  </td>
-                  <td className="button-col">
-                    {note.month}
-                  </td>
-                  <td className="button-col">
-                    {note.year}
-                  </td>
+                  <td className="desc-col">{note.topic}</td>
+                  <td className="button-col">{note.description}</td>
+                  <td className="button-col">{note.month}</td>
+                  <td className="button-col">{note.year}</td>
                   <td className="button-col">
                     <Update note={note} />
+                  </td>
+                  <td className="button-col">
+                    <Delete note={note} />
                   </td>
                 </tr>;
             })}
           </tbody>
         </table>
-      </div>
-    );
+      </div>;
   }
 }

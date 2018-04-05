@@ -79,7 +79,7 @@ router.delete("/delete", (req, res) => {
   // TODO check if note exists
 
   //delete note
-  let id = req.body._id;
+  let id = req.query.id;
   debug("Note with the id %s will be deleted", id);
   Note.find({ _id: id })
     .remove()
