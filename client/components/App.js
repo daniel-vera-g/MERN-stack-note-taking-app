@@ -35,14 +35,7 @@ export default class App extends React.Component {
       });
     });
   }
-  /* getData(ev, year) {
-    axios.get("/getAll?month=All&year=" + year).then(function(response) {
-      ev.setState({ data: response.data });
-      ev.setState({
-        selectedYear: parseInt(year)
-      });
-    });
-  } */
+  
 
   render() {
     return (
