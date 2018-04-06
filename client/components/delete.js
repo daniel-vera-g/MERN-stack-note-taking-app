@@ -33,6 +33,14 @@ class Delete extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      id: nextProps.note._id,
+      month: nextProps.note.month,
+      year: nextProps.note.year
+    });
+  }
+
   onClick(e) {
     this.delete(this);
   }

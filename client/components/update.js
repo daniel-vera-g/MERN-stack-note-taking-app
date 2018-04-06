@@ -43,6 +43,15 @@ class Update extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      id: nextProps.note._id,
+      description: nextProps.note.description,
+      month: nextProps.note.month,
+      year: nextProps.note.year
+    });
+  }
+
   openModal() {
     this.setState({
       modalIsOpen: true

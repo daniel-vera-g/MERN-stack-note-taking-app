@@ -67,7 +67,23 @@ class Add extends React.Component {
     }
     this.setState({ year: this.props.selectedYear });
   }
-
+  
+  componentWillReceiveProps(nextProps) {
+    // set the right month as state to update the information correctly after tab change
+    if (this.props.selectedMonth == 'All') {
+      this.setState({
+        month: "Jan"
+      })
+    }else{
+      this.setState({
+       month: this.props.selectedMonth
+      });
+    }
+    this.setState({
+      year: nextProps.selectedYear
+    })
+  };
+  
   // On Click handler to add new Note
   onClick(e) {
     this.insertNewNote(this);
