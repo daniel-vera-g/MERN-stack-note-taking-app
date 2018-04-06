@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 class MonthTabsRouter extends React.Component {
   constructor() {
     super();
-    this.state = { style: { "font-size": "10px" } };
+    this.state = { style: { "fontSize": "10px" } };
   }
 
   render() {
