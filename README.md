@@ -38,6 +38,14 @@
 * server.js --> Server setup
 * routes/routes.js --> Basic route handling
 
+## Installation
+
+1. Clone or Download Repository.
+2. Install Nodejs if required.
+3. Run `npm install`
+4. Run `npm start`
+5. Open the browser at: `localhost:8000`
+
 ---
 
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
