@@ -20,23 +20,25 @@ export default class App extends React.Component {
     // set default state for the component
     this.state = { selectedMonth: "All", selectedYear: 2016, data: [], activeTab: 2016 };
     this.getData = this.getData.bind(this);
+    // this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    // // TODO understand it
-    //  if (nextProps.history.location.search) {
-    //   var search = nextProps.history.location.search;
-    //   search = search.substring(1);
-    //   var searchObj = JSON.parse('{"' + decodeURI(search)
-    //         .replace(/"/g, '\\"')
-    //         .replace(/&/g, '","')
-    //         .replace(/=/g, '":"') + '"}');
-    //   this.setState({ activeTab: parseInt(searchObj.year) });
-    //   this.setState({ selectedYear: searchObj.year });
-    //   this.setState({ selectedMonth: searchObj.month });
-    //   this.getData(this, searchObj.year, searchObj.month);
-    // }else{
-      // }
+    // TODO understand it
+     if (nextProps.history.location.search) {
+      var search = nextProps.history.location.search;
+      console.log(search);
+      search = search.substring(1);
+      var searchObj = JSON.parse('{"' + decodeURI(search)
+            .replace(/"/g, '\\"')
+            .replace(/&/g, '","')
+            .replace(/=/g, '":"') + '"}');
+      this.setState({ activeTab: parseInt(searchObj.year) });
+      this.setState({ selectedYear: searchObj.year });
+      this.setState({ selectedMonth: searchObj.month });
+      this.getData(this, searchObj.year, searchObj.month);
+    }else{
+      }
         this.getData(this, 2016, "All");
     }
 

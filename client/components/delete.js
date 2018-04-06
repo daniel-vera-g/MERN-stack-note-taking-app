@@ -16,15 +16,20 @@ class Delete extends React.Component {
   constructor() {
     super();
     this.state = {
-      id: ""
+      id: "",
+      month: "",
+      year: ""
     };
     this.onClick = this.onClick.bind(this);
     this.delete = this.delete.bind(this);
   }
 
   componentDidMount() {
+    console.log(this.props.note);
     this.setState({
-      id: this.props.note._id
+      id: this.props.note._id,
+      month: this.props.note.month,
+      year: this.props.note.year
     });
   }
 
@@ -34,6 +39,7 @@ class Delete extends React.Component {
 
 //   delete note from System
   delete(e) {
+    console.log("Deleting note with the id " + e.state.id);
       axios.delete("/delete?id=" + e.state.id).then((resp) => {
         console.log(resp);
     }).catch(err => {

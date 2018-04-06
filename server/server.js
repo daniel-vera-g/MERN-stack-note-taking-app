@@ -7,17 +7,17 @@
 */
 
 const express = require('express');
+const app = express();
 const path = require('path');
 const morgan = require('morgan');
+// morgan logging utility
+app.use(morgan("combined"));
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const dotenv = require('dotenv').config();
 const debug = require('debug')('APP:server')
-const app = express();
 const reload = require('reload');
 
-// morgan logging utility
-app.use(morgan("combined"));
 // specify view engine & static files
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../client"));

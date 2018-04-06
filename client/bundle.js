@@ -32480,26 +32480,24 @@ var App = function (_React$Component) {
 
     _this.state = { selectedMonth: "All", selectedYear: 2016, data: [], activeTab: 2016 };
     _this.getData = _this.getData.bind(_this);
+    // this.handleSelect = this.handleSelect.bind(this);
     return _this;
   }
 
   _createClass(App, [{
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      // // TODO understand it
-      //  if (nextProps.history.location.search) {
-      //   var search = nextProps.history.location.search;
-      //   search = search.substring(1);
-      //   var searchObj = JSON.parse('{"' + decodeURI(search)
-      //         .replace(/"/g, '\\"')
-      //         .replace(/&/g, '","')
-      //         .replace(/=/g, '":"') + '"}');
-      //   this.setState({ activeTab: parseInt(searchObj.year) });
-      //   this.setState({ selectedYear: searchObj.year });
-      //   this.setState({ selectedMonth: searchObj.month });
-      //   this.getData(this, searchObj.year, searchObj.month);
-      // }else{
-      // }
+      // TODO understand it
+      if (nextProps.history.location.search) {
+        var search = nextProps.history.location.search;
+        console.log(search);
+        search = search.substring(1);
+        var searchObj = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+        this.setState({ activeTab: parseInt(searchObj.year) });
+        this.setState({ selectedYear: searchObj.year });
+        this.setState({ selectedMonth: searchObj.month });
+        this.getData(this, searchObj.year, searchObj.month);
+      } else {}
       this.getData(this, 2016, "All");
     }
   }, {
@@ -49564,7 +49562,9 @@ var Delete = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Delete.__proto__ || Object.getPrototypeOf(Delete)).call(this));
 
     _this.state = {
-      id: ""
+      id: "",
+      month: "",
+      year: ""
     };
     _this.onClick = _this.onClick.bind(_this);
     _this.delete = _this.delete.bind(_this);
@@ -49574,8 +49574,11 @@ var Delete = function (_React$Component) {
   _createClass(Delete, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      console.log(this.props.note);
       this.setState({
-        id: this.props.note._id
+        id: this.props.note._id,
+        month: this.props.note.month,
+        year: this.props.note.year
       });
     }
   }, {
@@ -49589,6 +49592,7 @@ var Delete = function (_React$Component) {
   }, {
     key: "delete",
     value: function _delete(e) {
+      console.log("Deleting note with the id " + e.state.id);
       _axios2.default.delete("/delete?id=" + e.state.id).then(function (resp) {
         console.log(resp);
       }).catch(function (err) {
