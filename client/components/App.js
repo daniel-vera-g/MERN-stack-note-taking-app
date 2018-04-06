@@ -23,25 +23,25 @@ export default class App extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // TODO understand it
-     if (nextProps.history.location.search) {
-      var search = nextProps.history.location.search;
-      search = search.substring(1);
-      var searchObj = JSON.parse('{"' + decodeURI(search)
-            .replace(/"/g, '\\"')
-            .replace(/&/g, '","')
-            .replace(/=/g, '":"') + '"}');
-      this.setState({ activeTab: parseInt(searchObj.year) });
-      this.setState({ selectedYear: searchObj.year });
-      this.setState({ selectedMonth: searchObj.month });
-      this.getData(this, searchObj.year, searchObj.month);
-    }else{
-      this.getData(this, "2016", "All");
+    // // TODO understand it
+    //  if (nextProps.history.location.search) {
+    //   var search = nextProps.history.location.search;
+    //   search = search.substring(1);
+    //   var searchObj = JSON.parse('{"' + decodeURI(search)
+    //         .replace(/"/g, '\\"')
+    //         .replace(/&/g, '","')
+    //         .replace(/=/g, '":"') + '"}');
+    //   this.setState({ activeTab: parseInt(searchObj.year) });
+    //   this.setState({ selectedYear: searchObj.year });
+    //   this.setState({ selectedMonth: searchObj.month });
+    //   this.getData(this, searchObj.year, searchObj.month);
+    // }else{
+      // }
+        this.getData(this, 2016, "All");
     }
-  }
 
   componentDidMount() {
-    this.getData(this, "2016", "All");
+    this.getData(this, 2016, "All");
   }
 
   handleSelect(selectedTab){
@@ -65,7 +65,8 @@ export default class App extends React.Component {
   }
   
   render() {
-    return <div>
+    return (
+    <div>
         <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} id={"years"}>
           <Tab id={"2016"} eventKey={2016} title={<YearTabsRouter year="2016" />} />
           <Tab id={"2017"} eventKey={2017} title={<YearTabsRouter year="2017" />} />
@@ -104,6 +105,7 @@ export default class App extends React.Component {
             })}
           </tbody>
         </table>
-      </div>;
+      </div>
+    )
   }
 }

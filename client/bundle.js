@@ -32486,23 +32486,26 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      // TODO understand it
-      if (nextProps.history.location.search) {
-        var search = nextProps.history.location.search;
-        search = search.substring(1);
-        var searchObj = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
-        this.setState({ activeTab: parseInt(searchObj.year) });
-        this.setState({ selectedYear: searchObj.year });
-        this.setState({ selectedMonth: searchObj.month });
-        this.getData(this, searchObj.year, searchObj.month);
-      } else {
-        this.getData(this, "2016", "All");
-      }
+      // // TODO understand it
+      //  if (nextProps.history.location.search) {
+      //   var search = nextProps.history.location.search;
+      //   search = search.substring(1);
+      //   var searchObj = JSON.parse('{"' + decodeURI(search)
+      //         .replace(/"/g, '\\"')
+      //         .replace(/&/g, '","')
+      //         .replace(/=/g, '":"') + '"}');
+      //   this.setState({ activeTab: parseInt(searchObj.year) });
+      //   this.setState({ selectedYear: searchObj.year });
+      //   this.setState({ selectedMonth: searchObj.month });
+      //   this.getData(this, searchObj.year, searchObj.month);
+      // }else{
+      // }
+      this.getData(this, 2016, "All");
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getData(this, "2016", "All");
+      this.getData(this, 2016, "All");
     }
   }, {
     key: "handleSelect",
