@@ -43,7 +43,7 @@
 1. Clone or Download Repository.
 2. Install Nodejs if required.
 3. Run `npm install`
-4. Run `npm start`
+4. Run `npm start` or click the `start.bat`file in the project root folder.
 5. Open the browser at: `localhost:8000`
 
 ---
