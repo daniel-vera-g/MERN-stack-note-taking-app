@@ -22,11 +22,13 @@ class MonthTabs extends React.Component {
       activeTab: this.props.year + "-" + nextProps.monthlyActiveTab
     });
   }
+
   handleSelect(selectedTab) {
     this.setState({
       activeTab: selectedTab
     });
   }
+
   render() {
     return (
       <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect}>
@@ -86,4 +88,5 @@ class MonthTabs extends React.Component {
     );
   }
 }
+
 export default MonthTabs;
