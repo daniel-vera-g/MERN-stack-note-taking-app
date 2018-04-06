@@ -24,7 +24,7 @@ export default class App extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // TODO understand it
+    // Get the search query to query the exact year according to the tabs
      if (nextProps.history.location.search) {
       var search = nextProps.history.location.search;
       console.log(search);
@@ -38,8 +38,8 @@ export default class App extends React.Component {
       this.setState({ selectedMonth: searchObj.month });
       this.getData(this, searchObj.year, searchObj.month);
     }else{
+      this.getData(this, 2016, "All");
       }
-        this.getData(this, 2016, "All");
     }
 
   componentDidMount() {

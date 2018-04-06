@@ -32497,8 +32497,9 @@ var App = function (_React$Component) {
         this.setState({ selectedYear: searchObj.year });
         this.setState({ selectedMonth: searchObj.month });
         this.getData(this, searchObj.year, searchObj.month);
-      } else {}
-      this.getData(this, 2016, "All");
+      } else {
+        this.getData(this, 2016, "All");
+      }
     }
   }, {
     key: "componentDidMount",
