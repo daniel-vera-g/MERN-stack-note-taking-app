@@ -1,21 +1,19 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import Modal from "react-modal";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import Log from "react-log";
-var querystring = require("querystring");
-
 /**
  * @author Daniel VG
  * @create date 2018-04-01 11:08:14
  * @modify date 2018-04-01 11:08:14
  * @desc React Component to add a Note
  */
-<Log>
-  Testing logging
-</Log>
-/**
+
+ import React from "react";
+import { Button } from "react-bootstrap";
+import Modal from "react-modal";
+import axios from "axios";
+import { Link } from "react-router-dom";
+var querystring = require("querystring");
+
+
+ /**
  * Button to:
  * Open Modal
  * Input Note Informations
