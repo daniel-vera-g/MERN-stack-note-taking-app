@@ -31,7 +31,7 @@
 1. client -> client-side code
 * css -> Styles
 * components
-* index.hbs
+* index.ejs
 * index.js
 
 2. Server
