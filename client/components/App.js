@@ -13,7 +13,7 @@ import Add from "./Add";
 import Update from "./update";
 import Delete from "./delete";
 import { Tab, Tabs } from "react-bootstrap";
-import YearTabsRouter from "./tabs/YearTabs.js";
+import YearTabsRouter from "./tabs/yearTabsRouter";
 export default class App extends React.Component {
   constructor() {
     super();
